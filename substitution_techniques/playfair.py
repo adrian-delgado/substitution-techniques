@@ -74,8 +74,9 @@ def cypher(plaintext, keyword, use_I = True, filler = 'X'):
 
     return cyphertext
 
-plaintext = 'THEQUICKBROWNFOXIUMPSOVERTHELAZYDOGA'
-keyword = 'MONARCHY'
-cyphertext = cypher(plaintext, keyword)
-print plaintext
-print cyphertext
+if __name__ == "__main__":
+    plaintext = 'THEQUICKBROWNFOXIUMPSOVERTHELAZYDOGA'
+    keyword = 'MONARCHY'
+    cyphertext = cypher(plaintext, keyword)
+    print plaintext
+    print cyphertext
