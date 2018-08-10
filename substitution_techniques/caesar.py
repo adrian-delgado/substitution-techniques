@@ -2,23 +2,21 @@ join = lambda charlist: ''.join(charlist)
 index = lambda c: ord(c) - 65
 tochar = lambda n: chr(n + 65)
 
+def cypher_single_char(c, k):
+    new_index = index(c) + k
+    new_char = tochar(new_index % 26)
+    return new_char
 
 def cypher(plaintext, k):
-    # return join([ tochar((index(c) + k) % 26) for c in plaintext])
-    cyphertext = ''
-    for c in plaintext:
-        cyphertext += tochar((index(c) + k) % 26)
-    return cyphertext
+    return join([ cypher_single_char(c, k) for c in plaintext])
 
 def decypher(cyphertext, k):
-    plaintext = ''
-    for c in cyphertext:
-        plaintext += tochar((index(c) - k) % 26)
-    return plaintext
+    return join([ cypher_single_char(c, -k) for c in cyphertext])
 
-key = 1
-plaintext = 'ABC'
-cyphertext = cypher(plaintext, key)
-print plaintext
-print cyphertext
-print decypher(cyphertext, key) == plaintext
+if __name__ == "__main__":
+    key = 1
+    plaintext = 'ABC'
+    cyphertext = cypher(plaintext, key)
+    print plaintext
+    print cyphertext
+    print decypher(cyphertext, key) == plaintext
