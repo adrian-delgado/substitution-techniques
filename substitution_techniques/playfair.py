@@ -39,7 +39,7 @@ def generate_matrix(keyword, use_I):
                 i += 1
     return matrix
 
-def cypher_char_pair(matrix, c1, c2):
+def cipher_char_pair(matrix, c1, c2):
     i1, j1 = find_coords_in_matrix(matrix, c1)
     i2, j2 = find_coords_in_matrix(matrix, c2)
 
@@ -55,28 +55,28 @@ def cypher_char_pair(matrix, c1, c2):
 
     return c1 + c2
 
-def cypher(plaintext, keyword, use_I = True, filler = 'X'):
+def cipher(plaintext, keyword, use_I = True, filler = 'X'):
     matrix = generate_matrix(keyword, use_I) # generate playfair matrix
     # print_matrix(matrix)
 
-    cyphertext = ''
+    ciphertext = ''
     i = 0
     while i < len(plaintext):
         c1 = plaintext[i]
         c2 = plaintext[i + 1] if i + 1 < len(plaintext) else 'X'
 
         if c1 == c2:
-            cyphertext += cypher_char_pair(matrix, c1, 'X')
+            ciphertext += cipher_char_pair(matrix, c1, 'X')
             i += 1
         else:
-            cyphertext += cypher_char_pair(matrix, c1, c2)
+            ciphertext += cipher_char_pair(matrix, c1, c2)
             i += 2
 
-    return cyphertext
+    return ciphertext
 
 if __name__ == "__main__":
     plaintext = 'THEQUICKBROWNFOXIUMPSOVERTHELAZYDOGA'
     keyword = 'MONARCHY'
-    cyphertext = cypher(plaintext, keyword)
+    ciphertext = cipher(plaintext, keyword)
     print plaintext
-    print cyphertext
+    print ciphertext
