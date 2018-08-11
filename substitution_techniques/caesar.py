@@ -1,17 +1,15 @@
-join = lambda charlist: ''.join(charlist)
-index = lambda c: ord(c) - 65
-tochar = lambda n: chr(n + 65)
+from helpers import index_in_alphabet, to_letter, join
 
 def cipher_single_char(c, k):
-    new_index = index(c) + k
-    new_char = tochar(new_index % 26)
+    new_index = index_in_alphabet(c) + k
+    new_char = to_letter(new_index % 26)
     return new_char
 
 def cipher(plaintext, k):
-    return join([ cipher_single_char(c, k) for c in plaintext])
+    return join([ cipher_single_char(c, k) for c in plaintext ])
 
 def decipher(ciphertext, k):
-    return join([ cipher_single_char(c, -k) for c in ciphertext])
+    return join([ cipher_single_char(c, -k) for c in ciphertext ])
 
 if __name__ == "__main__":
     key = 1

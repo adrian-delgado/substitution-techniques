@@ -1,5 +1,4 @@
-index = lambda c: ord(c) - 65
-tochar = lambda n: chr(n + 65)
+from helpers import index_in_alphabet, to_letter
 
 def two_at_once(iterable, filler):
     if len(iterable) % 2 == 1:
@@ -27,10 +26,10 @@ def generate_matrix(keyword, use_I):
     i = 0 # index in the matrix
     for c in keyword:
         matrix[i / 5][i % 5] = c
-        used_letters[index(c)] = True
+        used_letters[index_in_alphabet(c)] = True
         i += 1
     for j in range(26): # iterate over alphabet
-        char = tochar(j)
+        char = to_letter(j)
         skip_char = (char == 'J') if use_I else (char == 'I')
         if not used_letters[j]:
             if not skip_char:
